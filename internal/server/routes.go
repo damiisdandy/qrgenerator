@@ -18,6 +18,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 	// Register routes
 	mux.HandleFunc("/", handlers.Index)
 	mux.HandleFunc("/generate", handlers.Generate)
+	mux.HandleFunc("/health", handlers.Health)
 
 	// Serve static files
 	fs := http.FileServer(http.Dir("static"))

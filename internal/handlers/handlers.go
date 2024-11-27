@@ -58,3 +58,7 @@ func (h *Handlers) Generate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func (h *Handlers) Health(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
