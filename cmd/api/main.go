@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"qrgenerator/internal/server"
+	"github.com/damiisdandy/qrgenerator/internal/server"
 )
 
 func gracefulShutdown(apiServer *http.Server, done chan bool) {

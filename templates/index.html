@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link rel="icon" href="/static/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="">
+    <nav class="p-4 bg-blue-200">
+      <div class="container mx-auto">
+        <h1 class="text-2xl mb-4 font-bold">Stupid Simple QR Code Generator</h1>
+        <p class="text-sm md:text-base">
+          Built with Go, Vanilla JS, TailwindCSS, and a QR Code Library. Since
+          online QR code generators expire the generated link unless you pay.
+        </p>
+        <p class="italic text-sm md:text-base">
+          Created by
+          <a class="underline" href="https://github.com/damiisdandy"
+            >@damiisdandy</a
+          >
+        </p>
+      </div>
+    </nav>
+    <div class="container px-4 mx-auto mt-8 space-y-2">
+      <h1 class="text-2xl font-bold">QR Code Generator</h1>
+      <p>Type in the text you want to convert to a QR Code</p>
+      <form
+        action="/generate"
+        method="none"
+        id="qr-form"
+        class="flex flex-col md:flex-row gap-4"
+      >
+        <input
+          type="text"
+          name="text"
+          required
+          minlength="3"
+          maxlength="300"
+          class="border-2 border-gray-300 outline-blue-500 rounded-md p-2 w-full"
+          placeholder="Enter text here"
+        />
+        <button
+          type="submit"
+          class="bg-blue-500 text-white px-4 py-2 w-fit flex-shrink-0 rounded-md flex items-center gap-2"
+        >
+          <span>Generate QR Code</span>
+          <span class="loading-indicator hidden">
+            <svg
+              class="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </span>
+        </button>
+      </form>
+    </div>
+
+    <div
+      class="flex flex-col gap-4 w-screen p-4 items-center justify-center mt-6"
+    >
+      <p>Your QR codes last forever!</p>
+      <img
+        src="/static/giphy.gif"
+        class="rounded-lg"
+        width="350"
+        alt="Dexter morgan saying 'I'm not lying'"
+      />
+    </div>
+    <script>
+      document
+        .getElementById("qr-form")
+        .addEventListener("submit", function (e) {
+          const loadingIndicator = this.querySelector(".loading-indicator");
+          const form = this;
+          loadingIndicator.classList.remove("hidden");
+
+          // Hide the loading indicator after a short delay
+          setTimeout(() => {
+            loadingIndicator.classList.add("hidden");
+            form.reset();
+          }, 500); // Hide after 0.5 seconds
+        });
+    </script>
+  </body>
+</html>
